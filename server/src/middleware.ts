@@ -13,7 +13,7 @@ function authenticateToken(req: AuthenticatedRequest, res: Response, next: NextF
     return res.status(401).json({ message: "Unauthorized" });
   }
 
-  jwt.verify(token, "your-secret-key", (err, decoded) => {
+  jwt.verify(token, "secret", (err, decoded) => {
     if (err) {
       return res.status(403).json({ message: "Invalid token" });
     }
