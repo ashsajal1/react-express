@@ -5,6 +5,8 @@ import authenticateToken from "./middleware";
 
 const app = express();
 
+// Parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Dummy array of users (for demonstration purposes)
@@ -14,11 +16,12 @@ const users = [
 ];
 
 app.post("/login", (req: Request, res: Response) => {
-  const { username, passowrd } = req.body;
-
+  const { username, passsword } = req.body;
+  // console.log(req.body)
+  // console.log(username, passsword);
   const user = users.find((u) => u.username === username);
 
-  if (!user || user.password !== passowrd) {
+  if (!user || user.password !== passsword) {
     return res.status(401).json({ message: "Invalid credentials!" });
   }
 
