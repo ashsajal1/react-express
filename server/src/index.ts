@@ -1,10 +1,11 @@
 import express from "express";
-import bodyParser from 'body-parser';
-import jwt from 'jsonwebtoken';
+import bodyParser from "body-parser";
+import jwt from "jsonwebtoken";
 
 const app = express();
 
 app.use(bodyParser.json());
+
 
 app.get("/", (req, res) => {
   res.json({
