@@ -1,9 +1,11 @@
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import jwt from "jsonwebtoken";
+import cors from 'cors';
 import authenticateToken from "./middleware";
 
 const app = express();
+app.use(cors())
 
 // Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
