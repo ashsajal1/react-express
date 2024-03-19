@@ -1,11 +1,11 @@
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import jwt from "jsonwebtoken";
-import cors from 'cors';
-import authenticateToken from "./middleware";
+import cors from "cors";
+import authenticateToken, { AuthenticatedRequest } from "./middleware";
 
 const app = express();
-app.use(cors())
+app.use(cors());
 
 // Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -38,6 +38,16 @@ app.get("/", (req, res) => {
     message: "Working fine",
   });
 });
+
+app.get(
+  "/api/auth/status",
+  authenticateToken,
+  (req: AuthenticatedRequest, res) => {
+    // Check if user is authenticated
+    const isAuthenticated = !!req.user;
+    res.json({ authenticated: isAuthenticated });
+  }
+);
 
 app.get("/users", authenticateToken, (req, res) => {
   res.json({
