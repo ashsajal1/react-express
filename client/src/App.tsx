@@ -6,6 +6,7 @@ import NotFound from "./pages/not-found";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchAuthStatus } from "./features/auth/authSlice";
+import LoginPage from "./pages/login";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
