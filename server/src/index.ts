@@ -19,7 +19,7 @@ const users = [
 
 app.post("/api/auth/login", (req: Request, res: Response) => {
   const { username, password } = req.body;
-  console.log(req.body)
+  console.log(req.body);
   console.log(username, password);
   const user = users.find((u) => u.username === username);
 
@@ -27,9 +27,14 @@ app.post("/api/auth/login", (req: Request, res: Response) => {
     return res.status(401).json({ message: "Invalid credentials!" });
   }
 
-  const token = jwt.sign({ id: user.id }, "secret", { expiresIn: "1h" });
+  const token = jwt.sign({ username: user.username, id: user.id }, "secret", {
+    expiresIn: "1h",
+  });
 
-  return res.json(token);
+  return res.json({
+    user: user.username,
+    token,
+  });
 });
 
 app.get("/", (req, res) => {
