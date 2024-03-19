@@ -17,7 +17,7 @@ const users = [
   { id: 2, username: "bob", password: "password" },
 ];
 
-app.post("/login", (req: Request, res: Response) => {
+app.post("/api/auth/login", (req: Request, res: Response) => {
   const { username, passsword } = req.body;
   // console.log(req.body)
   // console.log(username, passsword);
