@@ -18,12 +18,12 @@ const users = [
 ];
 
 app.post("/api/auth/login", (req: Request, res: Response) => {
-  const { username, passsword } = req.body;
-  // console.log(req.body)
-  // console.log(username, passsword);
+  const { username, password } = req.body;
+  console.log(req.body)
+  console.log(username, password);
   const user = users.find((u) => u.username === username);
 
-  if (!user || user.password !== passsword) {
+  if (!user || user.password !== password) {
     return res.status(401).json({ message: "Invalid credentials!" });
   }
 
